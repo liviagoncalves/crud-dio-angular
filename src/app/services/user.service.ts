@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import {HttpClient, HttpHeaders} from "@angular/common/http";
-import {Observable} from "rxjs";
+import {iif, Observable} from "rxjs";
 import {User} from "../models/user";
 
 @Injectable({
@@ -33,4 +33,15 @@ export class UserService {
   deleteUser(id: number):Observable<User> {
     return this.httpCliente.delete<User>(`${this.apiUrl}/id/${id}`);
   }
+
+  //Edita Usuário UPDATE
+  updateUser(id: number, user: User):Observable<User>{
+    return this.httpCliente.put<User>(`${this.apiUrl}/id/${id}`, user, this.httpOptions);
+  }
+
+  //Lista Usuário unico
+  getUser(id: number):Observable<User[]> {
+    return this.httpCliente.get<User[]>(`${this.apiUrl}/id/${id}`);
+  }
+
 }
