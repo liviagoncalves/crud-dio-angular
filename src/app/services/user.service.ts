@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import {HttpClient} from "@angular/common/http";
+import {HttpClient, HttpHeaders} from "@angular/common/http";
 import {Observable} from "rxjs";
 import {User} from "../models/user";
 
@@ -8,6 +8,11 @@ import {User} from "../models/user";
 })
 export class UserService {
   apiUrl = 'https://sheet.best/api/sheets/81d86bd3-6d0c-45cd-b56b-0b74094711e5';
+  HttpOptions = {
+    headers: new HttpHeaders({
+      'Content-Type': 'application/json'
+    })
+  }
 
   constructor(private httpCliente: HttpClient) { }
 
@@ -18,4 +23,11 @@ export class UserService {
     return this.httpCliente.get<User[]>(this.apiUrl);
   }
 
+  //Salva usuario no banco CREATE
+
+  postUser(user: User):Observable<User>{
+    return this.httpCliente.post<User>(this.apiUrl, user, this.HttpOptions)
+  }
+
+  //15:33
 }
