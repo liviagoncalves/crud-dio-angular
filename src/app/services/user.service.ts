@@ -8,7 +8,7 @@ import {User} from "../models/user";
 })
 export class UserService {
   apiUrl = 'https://sheet.best/api/sheets/81d86bd3-6d0c-45cd-b56b-0b74094711e5';
-  HttpOptions = {
+  httpOptions = {
     headers: new HttpHeaders({
       'Content-Type': 'application/json'
     })
@@ -26,8 +26,11 @@ export class UserService {
   //Salva usuario no banco CREATE
 
   postUser(user: User):Observable<User>{
-    return this.httpCliente.post<User>(this.apiUrl, user, this.HttpOptions)
+    return this.httpCliente.post<User>(this.apiUrl, user, this.httpOptions)
   }
 
-  //15:33
+  //Excluir o usuário do banco DELETE
+  deleteUser(id: number):Observable<User> {
+    return this.httpCliente.delete<User>(`${this.apiUrl}/id/${id}`);
+  }
 }

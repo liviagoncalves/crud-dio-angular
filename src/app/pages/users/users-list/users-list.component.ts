@@ -10,15 +10,31 @@ import {UserService} from "../../../services/user.service";
 export class UsersListComponent implements OnInit {
   users: Array<User> = [];
 
-  constructor(private userservice: UserService) { }
+  constructor(private userService: UserService) { }
 
   ngOnInit(): void {
     this.getUsers();
   }
   getUsers(): void{
-    this.userservice.getUsers().subscribe(response => {
+    this.userService.getUsers().subscribe(
+      response => {
       this.users = response;
+    },
+      (err) => {
+      console.log('ERRO AO EXECUTAR', err.status);
     })
   }
 
+  deleteUser(id: number): void {
+    this.userService.deleteUser(id).subscribe(
+      response => {
+      console.log('Usuário Excluido!!');
+    },
+      (err) => {
+      console.log(err)
+    },
+      () => {
+      this.getUsers();
+    })
+  }
 }
