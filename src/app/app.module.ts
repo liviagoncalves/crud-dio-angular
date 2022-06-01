@@ -8,6 +8,15 @@ import { UsersListComponent } from './pages/users/users-list/users-list.componen
 import { UserFormComponent } from './pages/users/user-form/user-form.component';
 import {HttpClientModule} from "@angular/common/http";
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
+import { TodoListComponent } from './pages/todo/todo-list/todo-list.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import {MatInputModule} from "@angular/material/input";
+import {MatCardModule} from "@angular/material/card";
+import {MatGridListModule} from "@angular/material/grid-list";
+import {MatListModule} from "@angular/material/list";
+import { TodoItemComponent } from './pages/todo/todo-item/todo-item.component';
+import {MatButtonModule} from "@angular/material/button";
+import {MatIconModule} from "@angular/material/icon";
 
 @NgModule({
   declarations: [
@@ -15,13 +24,22 @@ import {FormsModule, ReactiveFormsModule} from "@angular/forms";
     HeaderComponent,
     UsersListComponent,
     UserFormComponent,
+    TodoListComponent,
+    TodoItemComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    BrowserAnimationsModule,
+    MatInputModule,
+    MatCardModule,
+    MatGridListModule,
+    MatListModule,
+    MatButtonModule,
+    MatIconModule
   ],
   providers: [],
   bootstrap: [AppComponent]
